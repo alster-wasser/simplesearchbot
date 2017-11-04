@@ -11,6 +11,7 @@ public class Labyrinth {
       try {
         // regarding this mess of buffered readers: I really don't know 
         // why it's so cumbersome in Java to read lines from a file
+        
         //calculate width
         BufferedReader readerOnlyForWidth = new BufferedReader(new FileReader(filename));
         width = readerOnlyForWidth.readLine().length();
