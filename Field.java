@@ -5,10 +5,10 @@ public class Field {
     //ein Feld kann nur eine dieser Eigenschaften haben. Passable steht für ein weißes (für den Bot 
     //"begehbares" Feld
     private enum FieldType {BORDER, PASSABLE, START, GOAL, FUEL}
-    public FieldType type;
+    private FieldType type; 
 
     
-    public char value;
+    private char value;
 
     /**
      * Constructor to create a new Field, setting the location and the value.
