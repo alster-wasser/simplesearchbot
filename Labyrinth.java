@@ -11,6 +11,10 @@ public class Labyrinth {
       return startField;
     }
 
+    public Field getFieldAt(int x, int y){
+      return fields[x][y];
+    }
+
     //not quite sure if we actually need this method; but it's good to have at least for testing
     public Field getGoalField(){
       return goalField;
@@ -27,7 +31,7 @@ public class Labyrinth {
         BufferedReader readerOnlyForWidth = new BufferedReader(new FileReader(filename));
         width = readerOnlyForWidth.readLine().length();
         readerOnlyForWidth.close();
-        //System.out.println(width);
+
 
         //calculate height
         BufferedReader readerOnlyForHeight = new BufferedReader(new FileReader(filename));
@@ -35,7 +39,7 @@ public class Labyrinth {
           height++;
         }
         readerOnlyForHeight.close();
-        //System.out.println(height);
+
 
 
         //go through every character in the text file and create a Field 
@@ -64,7 +68,7 @@ public class Labyrinth {
           }
         }
         reader.close();
-        //System.out.println(fields[0][1].value); //prints the top, second from left value
+
         
         //@TODO: some proper exception handling
       } catch (IOException e) {
@@ -74,11 +78,22 @@ public class Labyrinth {
 
     }
 
-    public static void main(String[] args) {
-      //just checking if start and goal have been instantiated properly
-      Labyrinth testLabyrinth = new Labyrinth("./blatt3_environment.txt");
-      System.out.println("start: " + testLabyrinth.getStartField());
-      System.out.println("goal: " + testLabyrinth.getGoalField());
+    //returns the neighbor of a Field in case this neighbor is passable
+    public Field getNeighbor(Field currentField, Direction direction){
+      int x = currentField.x;
+      int y = currentField.y;
+      Field newField;
+      if(direction == Direction.UP && labyrinth.getFieldAt(x, y-1).type == FieldType.PASSABLE){
+        newField = new Field(x, y-1, ' ');
+      } else if (direction == Direction.DOWN && labyrinth.getFieldAt(x, y+1).type == FieldType.PASSABLE){
+        newField = new Field(x, y+1, ' ');
+      } else if (direction == Direction.LEFT && labyrinth.getFieldAt(x-1, y).type == FieldType.PASSABLE){
+        newField = new Field(x-1, y, ' ');
+      } else if (direction == Direction.RIGHT && labyrinth.getFieldAt(x+1, y).type == FieldType.PASSABLE){
+        newField = new Field(x+1, y, ' ');
+      } 
+
+      return newField;
     }
 
     

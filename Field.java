@@ -1,11 +1,13 @@
 public class Field {
-    private int x; 
-    private int y;
+    //set these to protected so the classes in the package can 
+    //access them without the hassle of getter methods
+    protected int x; 
+    protected int y;
 
     //a Field can only be one of these types. "passable" means a white field
     private enum FieldType {BORDER, PASSABLE, START, GOAL, FUEL}
-    private FieldType type; 
-    private char value;
+    protected FieldType type; 
+    protected char value;
 
     /**
      * Constructor to create a new Field, setting the location and the value.
