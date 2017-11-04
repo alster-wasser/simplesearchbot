@@ -2,12 +2,9 @@ public class Field {
     private int x; 
     private int y;
 
-    //ein Feld kann nur eine dieser Eigenschaften haben. Passable steht für ein weißes (für den Bot 
-    //"begehbares" Feld
+    //a Field can only be one of these types. "passable" means a white field
     private enum FieldType {BORDER, PASSABLE, START, GOAL, FUEL}
     private FieldType type; 
-
-    
     private char value;
 
     /**
@@ -45,9 +42,5 @@ public class Field {
        
             
     }
-    // public static void main(String[] args){
-    //     Field field = new Field(0,0,'3');
-    //     System.out.print(field.value);
-    // }
 }
 
