@@ -50,7 +50,7 @@ public class Labyrinth {
             Field currentField = new Field(i, j, currentCharacter);
             fields[i][j] = currentField;
 
-            //set start field
+            //set start and goal field
             switch(currentCharacter){
               case 's':
                 startField = currentField;
@@ -66,6 +66,7 @@ public class Labyrinth {
         reader.close();
         //System.out.println(fields[0][1].value); //prints the top, second from left value
         
+        //@TODO: some proper exception handling
       } catch (IOException e) {
         e.printStackTrace();
       }
