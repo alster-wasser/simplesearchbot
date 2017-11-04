@@ -4,14 +4,25 @@ public class Labyrinth {
     private int width = 0;
     private int height = 0;
     private Field[][] fields;
+    private Field startField;
+    private Field goalField;
 
-    //this reads a text representation and instantiates the Labyrinth with
+    public Field getStartField(){
+      return startField;
+    }
+
+    //not quite sure if we actually need this method; but it's good to have at least for testing
+    public Field getGoalField(){
+      return goalField;
+    }
+
+    //the constructor reads a text representation and instantiates the Labyrinth with
     //a matrix of Field values. The index 0,0 is in the top left!
-    public void readFromTextFile(String filename){
+    public Labyrinth(String filename){
       try {
         // regarding this mess of buffered readers: I really don't know 
         // why it's so cumbersome in Java to read lines from a file
-        
+
         //calculate width
         BufferedReader readerOnlyForWidth = new BufferedReader(new FileReader(filename));
         width = readerOnlyForWidth.readLine().length();
@@ -35,9 +46,21 @@ public class Labyrinth {
           String currentLine = reader.readLine();
 
           for (int i = 0; i < width; i++){
-            Field field = new Field(i, j, currentLine.charAt(i));
-            fields[i][j] = field;
-            
+            char currentCharacter = currentLine.charAt(i);
+            Field currentField = new Field(i, j, currentCharacter);
+            fields[i][j] = currentField;
+
+            //set start field
+            switch(currentCharacter){
+              case 's':
+                startField = currentField;
+                break;
+              case 'g':
+                goalField = currentField;
+                break;
+              default:
+                break;
+            }
           }
         }
         reader.close();
@@ -51,8 +74,10 @@ public class Labyrinth {
     }
 
     public static void main(String[] args) {
-      
-      new Labyrinth().readFromTextFile("./blatt3_environment.txt");
+      //just checking if start and goal have been instantiated properly
+      Labyrinth testLabyrinth = new Labyrinth("./blatt3_environment.txt");
+      System.out.println("start: " + testLabyrinth.getStartField());
+      System.out.println("goal: " + testLabyrinth.getGoalField());
     }
 
     
