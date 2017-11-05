@@ -5,7 +5,7 @@ public class Field {
     protected int y;
 
     //a Field can only be one of these types. "passable" means a white field
-    private enum FieldType {BORDER, PASSABLE, START, GOAL, FUEL}
+    
     protected FieldType type; 
     protected char value;
 
@@ -30,13 +30,13 @@ public class Field {
             case 'g':
                 this.type = FieldType. GOAL;
                 break;
-            //more than five types of fuel seem unlikely
+            //more than five types of portals seem unlikely
             case '1':
             case '2':
             case '3':
             case '4':
             case '5':
-                this.type = FieldType.FUEL;
+                this.type = FieldType.PORTAL;
                 break;
             default:
                 break;

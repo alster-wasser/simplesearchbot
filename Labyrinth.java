@@ -78,23 +78,7 @@ public class Labyrinth {
 
     }
 
-    //returns the neighbor of a Field in case this neighbor is passable
-    public Field getNeighbor(Field currentField, Direction direction){
-      int x = currentField.x;
-      int y = currentField.y;
-      Field newField;
-      if(direction == Direction.UP && labyrinth.getFieldAt(x, y-1).type == FieldType.PASSABLE){
-        newField = new Field(x, y-1, ' ');
-      } else if (direction == Direction.DOWN && labyrinth.getFieldAt(x, y+1).type == FieldType.PASSABLE){
-        newField = new Field(x, y+1, ' ');
-      } else if (direction == Direction.LEFT && labyrinth.getFieldAt(x-1, y).type == FieldType.PASSABLE){
-        newField = new Field(x-1, y, ' ');
-      } else if (direction == Direction.RIGHT && labyrinth.getFieldAt(x+1, y).type == FieldType.PASSABLE){
-        newField = new Field(x+1, y, ' ');
-      } 
 
-      return newField;
-    }
 
     
 }
