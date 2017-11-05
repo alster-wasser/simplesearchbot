@@ -40,8 +40,6 @@ public class Labyrinth {
         }
         readerOnlyForHeight.close();
 
-
-
         //go through every character in the text file and create a Field 
         //for each of them, add the Field to the Labyrinth
         fields = new Field[width][height];
@@ -75,10 +73,6 @@ public class Labyrinth {
         e.printStackTrace();
       }
       
-
     }
-
-
-
     
 }

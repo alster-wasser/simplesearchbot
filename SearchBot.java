@@ -56,7 +56,7 @@ class SearchBot {
             pathsInFrontier.remove(path);
         }
 
-        //might not actually be needed but nice to have for testing, see main 
+        //might not actually be needed but nice to have for testing 
         int getFrontierSize(){
             return pathsInFrontier.size();
         }

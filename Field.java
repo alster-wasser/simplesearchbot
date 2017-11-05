@@ -41,8 +41,7 @@ public class Field {
             default:
                 break;
         }
-       
-            
+                  
     }
 
     public boolean isGoal(){
@@ -54,8 +53,5 @@ public class Field {
         }
     }
 
-    public String toString(){
-        return "x: " + x + ", y: " + y;
-    }
 }
 
