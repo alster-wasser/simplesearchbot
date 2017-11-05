@@ -29,18 +29,18 @@ class SearchBot {
         Field getHeadNode(){
             return path.getLast();
         }
+        //@TODO: implement a way to check if this node is already in the frontier as head of another path
         void addNode(Field field){
             path.add(field);
             if (field.isGoal()){
                 hasReachedGoal = true;
             }
         }
-
         int getPathLength(){
             return path.size();
         }
-
     }
+
     //class Frontier keeps all the search paths
     private class Frontier{
         private ArrayList<SearchPath> pathsInFrontier;
@@ -101,12 +101,12 @@ class SearchBot {
 
 
 
-    //current state: 
-    //1) x,y of current field
-    //2) length of path currently visiting
-    //whether it has terminated
-    //The output should look like this: <4, 5, 8, f> with values meaning <x, y, length, terminated?>
-    //and <8, 2, 7, t> in case the goal was at field (8,2) and the search path was 7 fields long.
+    // The current state of the bot consists of: 
+    // 1) x,y of current field
+    // 2) length of path currently visiting
+    // 3) whether it has terminated
+    // The output should look like this: <4, 5, 8, f> with values meaning <x, y, length, terminated?>
+    // and <8, 2, 7, t> in case the goal was at field (8,2) and the search path was 7 fields long.
     public void printCurrentState(){
         SearchPath currentPath = this.frontier.getCurrentPath();
         int x = currentPath.getHeadNode().x;

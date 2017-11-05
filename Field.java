@@ -3,9 +3,6 @@ public class Field {
     //access them without the hassle of getter methods
     protected int x; 
     protected int y;
-
-    //a Field can only be one of these types. "passable" means a white field
-    
     protected FieldType type; 
     protected char value;
 
