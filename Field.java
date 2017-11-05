@@ -44,6 +44,16 @@ public class Field {
        
             
     }
+
+    public boolean isGoal(){
+        if (this.type == FieldType.GOAL){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public String toString(){
         return "x: " + x + ", y: " + y;
     }

@@ -4,6 +4,7 @@ class SearchBot {
     private Field startField;
     private Labyrinth labyrinth;
     private Frontier frontier;
+    private boolean hasReachedGoal = false;
 
     //Creates a new bot set on the labyrinth.
     //The bot sits down on the start field
@@ -30,6 +31,9 @@ class SearchBot {
         }
         void addNode(Field field){
             path.add(field);
+            if (field.isGoal()){
+                hasReachedGoal = true;
+            }
         }
 
         int getPathLength(){
@@ -56,6 +60,14 @@ class SearchBot {
         int getFrontierSize(){
             return pathsInFrontier.size();
         }
+        //Chosen a bit arbitrarily; actually, the choice of what path I'm choosing
+        //from my frontier next decices what kind of search I implement, but I needed 
+        //some kind of this method for the search state output,
+        //and a frontier is bound to have at least the start node, so I take the path at index 0
+        SearchPath getCurrentPath(){
+            return pathsInFrontier.get(0);
+        }
+        
     }
 
     //Selecting all possible neighbor nodes, adding only the ones that are passable.
@@ -89,17 +101,25 @@ class SearchBot {
 
 
 
-
-
-    //@TODO: implement a way to output the labyrinth with the current search state
+    //current state: 
+    //1) x,y of current field
+    //2) length of path currently visiting
+    //whether it has terminated
+    //The output should look like this: <4, 5, 8, f> with values meaning <x, y, length, terminated?>
+    //and <8, 2, 7, t> in case the goal was at field (8,2) and the search path was 7 fields long.
     public void printCurrentState(){
-        System.out.println("test");
+        SearchPath currentPath = this.frontier.getCurrentPath();
+        int x = currentPath.getHeadNode().x;
+        int y = currentPath.getHeadNode().y;
+        int pathLength = currentPath.getPathLength();
+        String ifTerminated = (hasReachedGoal) ? "t" : "f";
+        String output = "<" + x + ", " + y + ", " + pathLength + ", " + ifTerminated + ">";
+        System.out.println(output);
     }
 
     public static void main(String[] args){
         Labyrinth labyrinth = new Labyrinth("./blatt3_environment.txt");
         SearchBot bot = new SearchBot(labyrinth);
-        System.out.println(bot.frontier.getFrontierSize());
         bot.printCurrentState();
     }
 }
