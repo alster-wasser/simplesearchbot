@@ -39,6 +39,15 @@ class SearchBot {
         int getPathLength(){
             return path.size();
         }
+
+        public String toString(){
+            String searchPathToString = "<";
+            for (Field node : path){
+                searchPathToString = searchPathToString.concat(node.toString());
+            }
+            searchPathToString = searchPathToString.concat(">");
+            return searchPathToString;
+        }
     }
 
     //class Frontier keeps all the search paths
@@ -66,6 +75,15 @@ class SearchBot {
         }
         boolean isEmpty(){
             return pathsInFrontier.isEmpty();
+        }
+
+        public String toString(){
+            String frontierToString = "[ ";
+            for(SearchPath path: pathsInFrontier){
+                frontierToString = frontierToString.concat(path.toString() + " ");
+            }
+            frontierToString =  frontierToString.concat("]");
+            return frontierToString;
         }
 
     }
@@ -135,10 +153,10 @@ class SearchBot {
              SearchPath newPath = currentPath;
              newPath.addNode(field);
              this.frontier.addPathToFrontier(newPath);
-
-           }
-          
+           }          
        }
+       System.out.println(this.frontier.getFrontierSize());
+       System.out.println(frontier.toString());
        printCurrentState(); 
     }
 
