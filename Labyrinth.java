@@ -32,7 +32,6 @@ public class Labyrinth {
         width = readerOnlyForWidth.readLine().length();
         readerOnlyForWidth.close();
 
-
         //calculate height
         BufferedReader readerOnlyForHeight = new BufferedReader(new FileReader(filename));
         while (readerOnlyForHeight.readLine() != null) {
@@ -66,8 +65,7 @@ public class Labyrinth {
           }
         }
         reader.close();
-
-        
+       
         //@TODO: some proper exception handling
       } catch (IOException e) {
         e.printStackTrace();
