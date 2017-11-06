@@ -20,7 +20,7 @@ class SearchBot {
     private class SearchPath {
         private LinkedList<Field> path;
 
-        //constructor for private class SearchPath, creates 
+        //constructor for private class SearchPath, creates
         //a new path with just one node in it
         SearchPath(Field field){
             path = new LinkedList<Field>();
@@ -44,7 +44,7 @@ class SearchBot {
     //class Frontier keeps all the search paths
     private class Frontier{
         private ArrayList<SearchPath> pathsInFrontier;
-        
+
         Frontier(SearchPath path){
             pathsInFrontier = new ArrayList<SearchPath>();
             pathsInFrontier.add(path);
@@ -56,12 +56,12 @@ class SearchBot {
             pathsInFrontier.remove(path);
         }
 
-        //might not actually be needed but nice to have for testing 
+        //might not actually be needed but nice to have for testing
         int getFrontierSize(){
             return pathsInFrontier.size();
         }
         //Chosen a bit arbitrarily; actually, the choice of what path I'm choosing
-        //from my frontier next decices what kind of search I implement, but I needed 
+        //from my frontier next decices what kind of search I implement, but I needed
         //some kind of this method for the search state output,
         //and a frontier is bound to have at least the start node, so I take the path at index 0
         SearchPath getCurrentPath(){
@@ -70,7 +70,7 @@ class SearchBot {
         boolean isEmpty(){
             return pathsInFrontier.isEmpty();
         }
-        
+
     }
 
     //Selecting all possible neighbor nodes, adding only the ones that are passable.
@@ -79,7 +79,7 @@ class SearchBot {
         int x = field.x;
         int y = field.y;
         ArrayList<Field> listOfNeighbors = new ArrayList<Field>();
-        
+
         Field rightNeighbor = this.labyrinth.getFieldAt(x+1, y);
         if (rightNeighbor.type == FieldType.PASSABLE){
             listOfNeighbors.add(rightNeighbor);
@@ -96,12 +96,12 @@ class SearchBot {
         if (topNeighbor.type == FieldType.PASSABLE){
             listOfNeighbors.add(topNeighbor);
         }
-      
-        return listOfNeighbors;
-        
-    } 
 
-    // The current state of the bot consists of: 
+        return listOfNeighbors;
+
+    }
+
+    // The current state of the bot consists of:
     // 1) x,y of current field
     // 2) length of path currently visiting
     // 3) whether it has terminated
@@ -117,8 +117,14 @@ class SearchBot {
         System.out.println(output);
     }
 
+    public void testSearch(){
+       
+    }
+
+    //you can call the bot with "java SearchBot %filename%"
     public static void main(String[] args){
-        Labyrinth labyrinth = new Labyrinth("./blatt3_environment.txt");
+        String filename = (args.length == 0) ? "./blatt3_environment.txt" : args[0];
+        Labyrinth labyrinth = new Labyrinth(filename);
         SearchBot bot = new SearchBot(labyrinth);
         bot.printCurrentState();
     }
