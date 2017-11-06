@@ -60,12 +60,9 @@ class SearchBot {
         int getFrontierSize(){
             return pathsInFrontier.size();
         }
-        //Chosen a bit arbitrarily; actually, the choice of what path I'm choosing
-        //from my frontier next decices what kind of search I implement, but I needed
-        //some kind of this method for the search state output,
-        //and a frontier is bound to have at least the start node, so I take the path at index 0
+        //returns the path at the end of the frontier
         SearchPath getCurrentPath(){
-            return pathsInFrontier.get(0);
+            return pathsInFrontier.get(pathsInFrontier.size()-1);
         }
         boolean isEmpty(){
             return pathsInFrontier.isEmpty();
@@ -117,8 +114,32 @@ class SearchBot {
         System.out.println(output);
     }
 
-    public void testSearch(){
-       
+
+
+
+    //work in progress
+    public void depthFirstSearch(){
+       SearchPath currentPath = this.frontier.getCurrentPath();
+       this.frontier.removePathFromFrontier(currentPath);
+       Field currentNode = currentPath.getHeadNode();
+       //@TODO: specify an order
+       ArrayList<Field> neighbors = getNeighborNodes(currentNode);
+       for (Field field : neighbors){
+           if (field.isGoal()){
+              SearchPath goalPath = currentPath;
+              goalPath.addNode(field);
+              this.frontier.addPathToFrontier(goalPath);
+              printCurrentState();
+              return;
+           } else {
+             SearchPath newPath = currentPath;
+             newPath.addNode(field);
+             this.frontier.addPathToFrontier(newPath);
+
+           }
+          
+       }
+       printCurrentState(); 
     }
 
     //you can call the bot with "java SearchBot %filename%"
@@ -126,6 +147,6 @@ class SearchBot {
         String filename = (args.length == 0) ? "./blatt3_environment.txt" : args[0];
         Labyrinth labyrinth = new Labyrinth(filename);
         SearchBot bot = new SearchBot(labyrinth);
-        bot.printCurrentState();
+        bot.depthFirstSearch();
     }
 }
