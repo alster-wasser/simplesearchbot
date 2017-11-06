@@ -57,8 +57,8 @@ public class Labyrinth {
                 startField = currentField;
                 break;
               case 'g':
-                break;
                 goalField = currentField;
+                break;
               default:
                 break;
             }
