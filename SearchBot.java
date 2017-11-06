@@ -67,6 +67,9 @@ class SearchBot {
         SearchPath getCurrentPath(){
             return pathsInFrontier.get(0);
         }
+        boolean isEmpty(){
+            return pathsInFrontier.isEmpty();
+        }
         
     }
 
@@ -97,9 +100,6 @@ class SearchBot {
         return listOfNeighbors;
         
     } 
-
-
-
 
     // The current state of the bot consists of: 
     // 1) x,y of current field
