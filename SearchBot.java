@@ -22,6 +22,9 @@ class SearchBot {
 
         //constructor for private class SearchPath, creates
         //a new path with just one node in it
+        SearchPath(){
+            path = new LinkedList<Field>();
+        }
         SearchPath(Field field){
             path = new LinkedList<Field>();
             path.add(field);
@@ -143,15 +146,20 @@ class SearchBot {
        //@TODO: specify an order
        ArrayList<Field> neighbors = getNeighborNodes(currentNode);
        for (Field field : neighbors){
+           System.out.println("Line 146, field: " + field);
            if (field.isGoal()){
               SearchPath goalPath = currentPath;
               goalPath.addNode(field);
               this.frontier.addPathToFrontier(goalPath);
+              this.hasReachedGoal = true;
               printCurrentState();
               return;
            } else {
-             SearchPath newPath = currentPath;
+             //somewhere here it doesn't want to create a new path each loop
+             SearchPath newPath = new SearchPath();
+             newPath = currentPath;
              newPath.addNode(field);
+             System.out.println("new path: " + newPath);
              this.frontier.addPathToFrontier(newPath);
            }          
        }
