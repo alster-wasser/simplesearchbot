@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.params=
+comment0.target=SearchBotUI()
+comment0.text=\r\n\ Initializes\ the\ SearchbotUI\r\n
+comment1.params=width\ height
+comment1.target=void\ sizeLabyrinth(int,\ int)
+comment2.params=f\ x\ y
+comment2.target=void\ fillLabyrinth(FieldType,\ int,\ int)
+numComments=3

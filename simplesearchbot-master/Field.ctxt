@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.params=xValue\ yValue\ character
+comment0.target=Field(int,\ int,\ char)
+comment0.text=\r\n\ Constructor\ to\ create\ a\ new\ Field,\ setting\ the\ location\ and\ the\ value.\r\n\ Depending\ on\ the\ value,\ it\ also\ sets\ a\ type\ for\ the\ field.\r\n
+comment1.params=
+comment1.target=boolean\ isGoal()
+comment2.params=
+comment2.target=FieldType\ getFieldType()
+numComments=3
