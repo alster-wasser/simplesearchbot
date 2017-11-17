@@ -20,8 +20,8 @@ class SearchBot {
         this.labyrinth = labyrinth;
         startField = labyrinth.getStartField();
         frontier = new Frontier(new SearchPath(startField));
-        //searchbotUI = new SearchBotUI(this);
-        //labyrinth.showLabyrinth(searchbotUI);
+        searchbotUI = new SearchBotUI(this);
+        labyrinth.showLabyrinth(searchbotUI);
         labyrinth.setPortals();
     }
 
