@@ -139,8 +139,8 @@ public class Labyrinth {
             for (int x = 0; x < width; x++) {
 
                 for (Field goalField : goalFieldsList) {
-
-                    fields[x][y].goalDistance.add(manhattan(x, y, goalField.x, goalField.y));
+                    Field field = fields[x][y];
+                    field.goalDistance.add(manhattan(field.x, field.y, goalField.x, goalField.y));
                 }
             }
         }

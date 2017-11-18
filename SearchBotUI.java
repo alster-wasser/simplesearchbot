@@ -79,12 +79,23 @@ public class SearchBotUI
         panel2.add(button);
         frame.pack();
     }
-    public void showGoalpath(SearchPath p){
+    public void showGoalpath(SearchPath p, Frontier frontier){
         for(Field f : p.path){
             JButton button = buttons[f.x][f.y];
             button.setBackground(Color.YELLOW);
             breadthFirst.setEnabled(false);
             depthFirst.setEnabled(false);
+        }
+        System.out.println("Maximale Knoten im Frontier " + frontier.maxNodesInFrontier);
+        System.out.println("Expansion Operations im Frontier " + frontier.expansionOperations);
+    }
+    public void noGoalFound(){
+        for(JButton[] bu : buttons){
+            for(JButton b : bu){
+                b.setBackground(Color.BLACK);
+                breadthFirst.setEnabled(false);
+                depthFirst.setEnabled(false);
+            }
         }
     }
     public void markVisitedField(Field field){

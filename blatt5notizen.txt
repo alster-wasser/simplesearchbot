@@ -1,0 +1,8 @@
+Blatt 5, Aufgabe 2
+
+Eine heuristische Funktion sollte günstig zu berechnen und unterschätzend sein. Eine Heuristik, die mit Portalen
+korrekt arbeitet, wäre zu Zeit und Speicheraufwendig, da vom Ziel aus die Abstände zu jedem Feld über eine Art
+Breitensuche berechnet werden müssten. Der Aufwand, den diese Breitensuche bedeuten würde, wäre gleich dem Aufwand
+einfach eine normale Breitensuche durchzuführen und somit nicht rentabel. Daher haben wir einfach dafür gesorgt,
+dass trotz des Vertauschens der Referenzen auf die Portale, die Portale den richtigen Abstand zum Ziel speichern.
+Wenn man nun also auf ein Portalfeld kommt, erhält man die Distanz vom Portal aus dem man herauskommt. 

@@ -104,13 +104,15 @@ class SearchBot {
         for(SearchPath path : frontier.getCurrentFrontier()){
             latestFrontier.add(path);
         }
+        int newNeighbours = 0;
         for(SearchPath path : latestFrontier){
             ArrayList<Field> neighbors = getNeighborNodes(path.getHeadNode());
             if(!neighbors.isEmpty()){
                 frontier.removePathFromFrontier(path);
                 for(Field node : neighbors){
+                    newNeighbours++;
                     if(node.isGoal()){
-                        searchbotUI.showGoalpath(path);
+                        searchbotUI.showGoalpath(path, frontier);
                         return;
                     }
                     else{
@@ -123,6 +125,10 @@ class SearchBot {
                 }
             }
         }
+        //Wenn keine neuen Nachbarn hinzugefügt werden konnten, terminiert die Suche
+        if(newNeighbours == 0){
+            searchbotUI.noGoalFound();
+        }
     }
     /**
      * Ein Schritt richtung Ziel in der TIEFENSUCHE
@@ -133,11 +139,17 @@ class SearchBot {
      * Wenn das Ziel getroffen wird, Pfad in UI markieren
      */
     public void depthFirstWithUI(){
+        //Wenn der Frontier leer ist, terminieren:
+        if(frontier.isEmpty())
+        {
+            searchbotUI.noGoalFound();
+            return;
+        }
         SearchPath path = frontier.getCurrentPath();
         frontier.removeLastEntry();
         for(Field node : getNeighborNodes(path.getHeadNode())){
             if(node.isGoal()){
-                     searchbotUI.showGoalpath(path);
+                     searchbotUI.showGoalpath(path, frontier);
                      return;
                     }
                     else
@@ -179,6 +191,8 @@ class SearchBot {
                         labyrinth.setGoalWay(field.x, field.y);
                         printCurrentLabyrinth();
                     }
+                    System.out.println("Maximale Knoten im Frontier " + frontier.maxNodesInFrontier);
+                    System.out.println("Expansion Operations im Frontier " + frontier.expansionOperations);
                     return;
                 }
                 else {
@@ -196,7 +210,6 @@ class SearchBot {
             printCurrentLabyrinth();
         }
         System.out.println(closedList);
-
 
     }
 

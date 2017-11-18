@@ -1,14 +1,25 @@
 import java.util.ArrayList;
     class Frontier {
         private ArrayList<SearchPath> pathsInFrontier;
+        public int expansionOperations = 0;
+        public int maxNodesInFrontier = 1;
 
         Frontier(SearchPath path) {
             pathsInFrontier = new ArrayList<SearchPath>();
             pathsInFrontier.add(path);
+            expansionOperations++;
         }
 
         void addPathToFrontier(SearchPath path) {
             pathsInFrontier.add(path);
+            expansionOperations++; 
+            int possibleMax = 0;
+            for(SearchPath p : pathsInFrontier){
+                possibleMax = possibleMax + p.getPathLength();
+            }
+            if(possibleMax > maxNodesInFrontier){
+                maxNodesInFrontier = possibleMax;
+            }
         }
 
         void removePathFromFrontier(SearchPath path) {
@@ -27,7 +38,7 @@ import java.util.ArrayList;
             return pathsInFrontier.get(0);
         }
 
-        //might not actually be needed but nice to have for testing
+        //returns the number of paths in the frontier
         int getFrontierSize() {
             return pathsInFrontier.size();
         }
