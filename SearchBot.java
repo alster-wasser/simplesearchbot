@@ -162,6 +162,7 @@ class SearchBot {
         }
     }
 
+    
     public void aStarSearch(){
 
         ArrayList<Field> openList = new ArrayList<>();
@@ -213,6 +214,9 @@ class SearchBot {
 
     }
 
+
+
+
     private boolean listContainsFieldCheaper(ArrayList<Field> openList, Field neighbor){
 
         //System.out.println(openList);
@@ -221,7 +225,7 @@ class SearchBot {
             if (field.x == neighbor.x && field.y == neighbor.y){
 
                 if (field.costToGetToGoal <= neighbor.costToGetToGoal){
-                    System.out.println("<" + "Billigstes Feld  :" + "x:" +  field.x + "y:" + field.y + ">");
+                    //System.out.println("Billigeres Feld: " + field.toString());
                     return true;
                 }
             }
@@ -229,13 +233,17 @@ class SearchBot {
         return false;
     }
 
+    // private SearchPath getGoalPath(){
+
+    // }
+
     private Field getCheapestFieldToGoal(ArrayList<Field> openList) {
 
         Field cheapestField = openList.get(0);
         for (Field field : openList) {
 
-            System.out.println("Field  :" + field.costToGetToGoal);
-            System.out.println("Cheapest Field  :" + cheapestField.costToGetToGoal);
+            //System.out.println("Field: " + field.costToGetToGoal);
+            //System.out.println("Cheapest Field: " + cheapestField.costToGetToGoal);
             if (field.costToGetToGoal < cheapestField.costToGetToGoal){
 
                 cheapestField = field;
